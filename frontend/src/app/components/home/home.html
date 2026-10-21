@@ -1,0 +1,24 @@
+<main class="space-container">
+  <!-- Capas de estrellas para el efecto parallax -->
+  <div class="stars stars-back" aria-hidden="true"></div>
+  <div class="stars stars-middle" aria-hidden="true"></div>
+  <div class="stars stars-front" aria-hidden="true"></div>
+
+  <!-- Contenido principal -->
+  <section class="hero">
+    <h1>Estoy funcionando</h1>
+
+    <p>
+      {{ mensaje() }}
+    </p>
+
+    <button class="explore-button" routerLink="/users">
+      Ver lista de usuarios
+      <span class="arrow" aria-hidden="true">→</span>
+    </button>
+  </section>
+
+  <div class="bottom-label" aria-hidden="true">
+    EXEMPLARIS EXCOMVNICATIONIS
+  </div>
+</main>

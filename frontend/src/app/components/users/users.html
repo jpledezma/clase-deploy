@@ -1,0 +1,114 @@
+<main class="users-page">
+  <section class="users-container">
+    <header class="page-header">
+      <span class="eyebrow">GESTIÓN DE USUARIOS</span>
+      <h1>Usuarios</h1>
+    </header>
+
+    @if (errorMessage) {
+    <p class="error-message" role="alert">
+      {{ errorMessage }}
+    </p>
+    }
+
+    <section class="panel">
+      <div class="panel-header">
+        <h2>Lista de usuarios</h2>
+        <span class="user-count">
+          {{ users().length }} usuarios
+        </span>
+      </div>
+
+      @if (loading) {
+      <p class="empty-message">Cargando usuarios...</p>
+      } @else {
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Edad</th>
+              <th class="actions-column">Acciones</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for (user of users(); track $index) {
+            <tr>
+              <td>{{ user.firstName }}</td>
+              <td>{{ user.lastName }}</td>
+              <td>{{ user.age }}</td>
+              <td class="actions-column">
+                <button type="button" class="delete-button" (click)="deleteUser(user._id!)"
+                  [attr.aria-label]="'Eliminar a ' + user.firstName + ' ' + user.lastName">
+                  Eliminar
+                </button>
+              </td>
+            </tr>
+            } @empty {
+            <tr>
+              <td colspan="4" class="empty-message">
+                No hay usuarios registrados.
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      }
+    </section>
+
+    <section class="panel form-panel">
+      <div class="panel-header">
+        <h2>Agregar usuario</h2>
+      </div>
+
+      <form [formGroup]="userForm" (ngSubmit)="addUser()"> 
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="firstName">Nombre</label>
+            <input id="firstName" type="text" formControlName="firstName" placeholder="Ej. Ana" />
+
+            @if (
+            userForm.controls.firstName.touched &&
+            userForm.controls.firstName.invalid
+            ) {
+            <small class="field-error">El nombre es obligatorio.</small>
+            }
+          </div>
+
+          <div class="form-field">
+            <label for="lastName">Apellido</label>
+            <input id="lastName" type="text" formControlName="lastName" placeholder="Ej. García" />
+
+            @if (
+            userForm.controls.lastName.touched &&
+            userForm.controls.lastName.invalid
+            ) {
+            <small class="field-error">El apellido es obligatorio.</small>
+            }
+          </div>
+
+          <div class="form-field">
+            <label for="age">Edad</label>
+            <input id="age" type="number" formControlName="age" min="1" placeholder="Ej. 25" />
+
+            @if (
+            userForm.controls.age.touched &&
+            userForm.controls.age.invalid
+            ) {
+            <small class="field-error">
+              Ingresa una edad válida mayor que cero.
+            </small>
+            }
+          </div>
+        </div>
+
+        <button type="submit" class="submit-button">
+          + Agregar usuario
+        </button>
+      </form>
+    </section>
+  </section>
+</main>
