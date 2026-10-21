@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Service } from '@angular/core';
 import { UserModel } from '../interfaces/user-model';
-import { environment } from '../../environments/environment.development';
+import { environment } from '../../environments/environment';
 
 @Service()
 export class ApiClient {
