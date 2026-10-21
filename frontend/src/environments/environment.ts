@@ -1,4 +1,4 @@
 export const environment = {
   mensaje: 'Estoy en producción',
-  apiUrl: 'http://localhost:3000',
+  apiUrl: 'https://clase-deploy-backend.vercel.app',
 };
