@@ -1,4 +1,4 @@
 export const environment = {
   mensaje: 'Estoy en producción',
-  apiUrl: 'https://clase-deploy-zeta.vercel.app',
+  apiUrl: 'https://clase-deploy-nest.vercel.app',
 };
